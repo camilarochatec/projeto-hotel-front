@@ -1,10 +1,13 @@
 import Card from "../../components/Card";
-import { FaCircle } from "react-icons/fa";
+import { FaCircle, FaRegUser } from "react-icons/fa";
+import CardReservas from "../../components/CardReservas";
+import { MdOutlineBed } from "react-icons/md";
+import DailyResume from "../../components/DailyResume";
+import ChartRoom from "../../components/ChartRoom";
 import CardRoom from "../../components/CardRoom";
-import CardReview from "../../components/CardReview";
-import { FiTrendingUp, FiDollarSign, FiCalendar } from "react-icons/fi";
 import { LuBed } from "react-icons/lu";
-
+import { FiCalendar, FiDollarSign, FiTrendingUp } from "react-icons/fi";
+import CardReview from "../../components/CardReview";
 
 const Dashboard = () => {
 
@@ -27,7 +30,7 @@ const Dashboard = () => {
             titulo: "Taxa de Ocupação",
             valor: "20%",
             descricao: "2 de 10 quartos",
-            estatisticas: "↘ -5% vs. mês anterior",
+            estatisticas: "↘ -5% vs. mês anterior", 
             valorTendencia: -5, 
             icone: <FiTrendingUp size={24} />,
             cor: "bg-[#0f4f6e]"
@@ -64,7 +67,6 @@ const Dashboard = () => {
 
     return (
         <main className="p-8 bg-[#fcfaf8] flex flex-col gap-6">
-            {/* CARD: Status  */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {dadosReview.map((item) => (
                     <CardReview
@@ -80,7 +82,6 @@ const Dashboard = () => {
                 ))}
             </div>
 
-            {/* CARD: Status dos Quartos */}
             <Card
                 titulo="Status dos Quartos"
                 info={
@@ -99,20 +100,27 @@ const Dashboard = () => {
                 </div>
             </Card>
 
-            {/* CARD 2: Reservas Recentes */}
-            <Card
-                titulo="Reservas Recentes"
-                info={
-                    <a
-                        href="#"
-                        className="bg-yellow-500 text-gray-900 hover:bg-yellow-600 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-1 transition-colors"
+            <div className="flex gap-5">
+                <div className="flex-1">
+                    <Card
+                        titulo="Reservas Recentes"
+                        info={
+                            <a
+                                href="#"
+                                className="bg-yellow-500 text-gray-900 hover:bg-yellow-600 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-1 transition-colors"
+                            >
+                                Ver todas <span>&rarr;</span>
+                            </a>
+                        }
                     >
-                        Ver todas <span>&rarr;</span>
-                    </a>
-                }
-            >
-                <h1>Lista de reservas vai aqui...</h1>
-            </Card>
+                        <h1>Lista de reservas vai aqui...</h1>
+                    </Card>
+                </div>
+                <div className="flex flex-col gap-5 w-75">
+                    <DailyResume checkIns={8} checkOuts={4} />
+                    <ChartRoom />
+                </div>
+            </div>
 
         </main>
     );

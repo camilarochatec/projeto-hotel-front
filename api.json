@@ -20,5 +20,11 @@
             "id": 5,
             "nome": "Porteiro"
         }
+    ],
+    "funcionarios": [
+        {
+            "id": 1,
+            "nome": "Lais"
+        }
     ]
 }
