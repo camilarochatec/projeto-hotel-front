@@ -2,7 +2,6 @@ import Card from "../../components/Card";
 import { FaCircle, FaRegUser } from "react-icons/fa";
 import CardReservas from "../../components/CardReservas";
 import { MdOutlineBed } from "react-icons/md";
-import { FaCircle } from "react-icons/fa";
 import DailyResume from "../../components/DailyResume";
 import ChartRoom from "../../components/ChartRoom";
 import CardRoom from "../../components/CardRoom";
@@ -66,8 +65,11 @@ const Dashboard = () => {
         }
     ];
 
-    return (
-        <main className="p-8 bg-[#fcfaf8] flex flex-col gap-6">
+return (
+        // 1. Removido o p-8 para aproveitar o espaçamento automático do Layout
+        <div className="flex flex-col gap-6 w-full">
+            
+            {/* Cards do Topo (Já estavam perfeitos!) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {dadosReview.map((item) => (
                     <CardReview
@@ -86,7 +88,8 @@ const Dashboard = () => {
             <Card
                 titulo="Status dos Quartos"
                 info={
-                    <div className="flex gap-4 items-center">
+                    // flex-wrap para permitir que a legenda quebre linha no celular se precisar
+                    <div className="flex flex-wrap gap-4 items-center text-sm">
                         <span className="flex items-center gap-1"><FaCircle size={8} className="text-green-500" /> Vago</span>
                         <span className="flex items-center gap-1"><FaCircle size={8} className="text-blue-800" /> Ocupado</span>
                         <span className="flex items-center gap-1"><FaCircle size={8} className="text-yellow-500" /> Reservado</span>
@@ -94,15 +97,18 @@ const Dashboard = () => {
                     </div>
                 }
             >
-                <div className="grid grid-cols-5 gap-4">
+                {/* 2. Grid responsivo no lugar do grid-cols-5 fixo */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                     {rooms.map((room) => (
                         <CardRoom key={room.id} room={room} />
                     ))}
                 </div>
             </Card>
 
-            <div className="flex gap-5">
-                <div className="flex-1">
+            {/* 3. flex-col no celular, lg:flex-row no PC */}
+            <div className="flex flex-col lg:flex-row gap-5">
+                
+                <div className="flex-1 w-full">
                     <Card
                         titulo="Reservas Recentes"
                         info={
@@ -117,13 +123,15 @@ const Dashboard = () => {
                         <h1>Lista de reservas vai aqui...</h1>
                     </Card>
                 </div>
-                <div className="flex flex-col gap-5 w-75">
+                
+                {/* 4. w-full no celular, lg:w-80 no PC */}
+                <div className="flex flex-col gap-5 w-full lg:w-80 shrink-0">
                     <DailyResume checkIns={8} checkOuts={4} />
                     <ChartRoom />
                 </div>
             </div>
 
-        </main>
+        </div>
     );
 }
 

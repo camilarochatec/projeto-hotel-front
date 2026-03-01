@@ -3,11 +3,15 @@ import Menu from "../components/Menu";
 
 const AdminLayout = () => {
     return (
-        <div className="flex">
+        <div className="flex h-dvh overflow-hidden bg-gray-50 w-full">
             <Menu />
-            <div className="flex-1 h-dvh overflow-auto">
-                <Outlet />
-            </div>
+            
+            <main className="flex-1 min-w-0 h-full overflow-y-auto overflow-x-hidden pb-[80px] md:pb-0 relative">
+                <div className="p-4 md:p-6 max-w-7xl mx-auto w-full relative">
+                    <Outlet />
+                </div>
+                
+            </main>
         </div>
     );
 }

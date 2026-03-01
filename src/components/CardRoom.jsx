@@ -122,11 +122,23 @@ export default function CardRoom({ room }) {
       </h3>
 
       {/* Guests */}
-      <div className="flex items-center gap-1 text-xs text-gray-500">
-        <PeopleIcon className="w-3.5 h-3.5" />
-        <span>
-          {room.guests} {room.guests === 1 ? "pessoa" : "pessoas"}
-        </span>
+      <div className="mt-2 flex items-center justify-between">
+        <div className="flex items-center gap-1 text-xs text-gray-500">
+          <PeopleIcon className="w-3.5 h-3.5" />
+          <span>
+            {room.guests} {room.guests === 1 ? "pessoa" : "pessoas"}
+          </span>
+        </div>
+
+        {/* O botão Detalhes só aparece se a prop "onClickDetalhes" for passada */}
+        {room.onClickDetalhes && (
+          <button
+            onClick={() => room.onClickDetalhes(room)}
+            className="text-xs font-semibold text-[#0b4263] hover:text-[#F59F0A] transition-colors"
+          >
+            Detalhes
+          </button>
+        )}
       </div>
     </div>
   );
