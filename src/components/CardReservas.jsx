@@ -29,24 +29,42 @@ const CardReservas = ({ foto, nome, status, quarto, dados, valor, forma }) => {
               <MdOutlineBed className="text-neutral-400 relative size-5 -bottom-1 right-1" />
               <p>{quarto}</p>
             </div>
+            <div className="relative flex  flex-col">
 
-            <div className="flex text-neutral-500 font-extralight">
-              <GoCalendar className="text-neutral-500 relative -bottom-1 right-1" />
-              <p>{dados}</p>
-            </div>
-          </div>
+  {/* NOME + STATUS */}
+  <div className="flex items-center gap-3">
+    <h2>{nome}</h2>
 
-        </div>
-        <div className="relative  top-1 left-6" >
-          <div className="font-bold flex justify-end  ">{valor}</div>
-          <div className="text-neutral-500 flex justify-end  font-light ">{forma}</div>
-        </div>
-      </div>
+   <span
+  className={`px-3 py-1 rounded-2xl text-sm  ${status === "pago" ? "bg-green-200 text-green-700" : "bg-red-200 text-red-700"}`}>
+    {status === "pago" ? "pago" : "pendente"}
+</span>
+  </div>
 
+  {/* QUARTO E DADOS */}
+  <div className="flex relative gap-4 mt-1">
+    <div className="flex text-neutral-500 font-extraligth">
+      <MdOutlineBed className="text-neutral-400 relative size-5 -bottom-1 right-1" />
+      <p>{quarto}</p>
+    </div>
 
+    <div className="flex text-neutral-500 font-extralight">
+      <GoCalendar className="text-neutral-500 relative -bottom-1 right-1" />
+      <p>{dados}</p>
+    </div>
+  </div>
 
-    </section>
-  );
+</div>
+<div className="relative top-1 ml-auto  " >
+<div className="font-bold flex justify-end  ">{valor}</div>
+<div className="text-neutral-500 flex justify-end  font-light ">{forma}</div>
+</div>
+</div>
+             
+
+       
+       </section>
+     );
 }
 
 export default CardReservas;
